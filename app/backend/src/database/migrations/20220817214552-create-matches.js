@@ -15,7 +15,7 @@ module.exports = {
         allowNull: false,
         field: 'home_team',
         references: {
-          model: 'teams',
+          model: 'teams',   
           key: 'id',
         },
       },
