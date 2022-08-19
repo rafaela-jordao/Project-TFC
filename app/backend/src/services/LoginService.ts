@@ -1,12 +1,8 @@
 import { compare } from 'bcryptjs';
-import jwt = require('jsonwebtoken');
 import User from '../database/models/User';
+import jwtService from './jwtService';
 
-import 'dotenv/config';
-
-const JWT_SECRET = 'minhaSuperSenha';
-
-export default class UserService {
+export default class LoginService {
   public login = async (email: string, password: string) => {
     const user = await User.findOne({ where: { email } });
 
@@ -15,13 +11,16 @@ export default class UserService {
       e.name = 'ValidationError';
       throw e;
     }
+
     const validPassword = await compare(password, user.password);
     if (!validPassword) {
-      const e = new Error('Invalid fields');
+      throw new Error('Deu ruim');
+      /* const e = new Error('Invalid fields');
       e.name = 'ValidationError';
-      throw e;
+      throw e; */
     }
-    const token = jwt.sign({ email }, JWT_SECRET); // process.env.JWT_SECRET (verificar pq não consegui usar dessa forma)
+
+    const token = jwtService.createToken({ email, password });
     return token;
   };
 }
