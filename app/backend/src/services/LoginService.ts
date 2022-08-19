@@ -14,10 +14,9 @@ export default class LoginService {
 
     const validPassword = await compare(password, user.password);
     if (!validPassword) {
-      throw new Error('Deu ruim');
-      /* const e = new Error('Invalid fields');
+      const e = new Error('Invalid fields');
       e.name = 'ValidationError';
-      throw e; */
+      throw e;
     }
 
     const token = jwtService.createToken({ email, password });
