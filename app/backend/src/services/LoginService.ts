@@ -7,14 +7,14 @@ export default class LoginService {
     const user = await User.findOne({ where: { email } });
 
     if (!user || !password) {
-      const e = new Error('Invalid fields');
+      const e = new Error('All fields must be filled');
       e.name = 'ValidationError';
       throw e;
     }
 
     const validPassword = await compare(password, user.password);
     if (!validPassword) {
-      const e = new Error('Invalid fields');
+      const e = new Error('All fields must be filled');
       e.name = 'ValidationError';
       throw e;
     }

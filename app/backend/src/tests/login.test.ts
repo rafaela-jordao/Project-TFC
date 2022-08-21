@@ -31,5 +31,15 @@ const { expect } = chai;
   
         expect(response.status).to.equal(200);
       })
+
+      it('quando logado com sucesso deve retornar um {token}', async () => {
+        const response = await chai.request(app)
+          .post('/login')
+          .send(loginMock)
+  
+        expect(response.body).to.have.property('token');
+      })
+
+      
     })
   })
