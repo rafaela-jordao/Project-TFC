@@ -6,16 +6,16 @@ export default class LoginService {
   public login = async (email: string, password: string) => {
     const user = await User.findOne({ where: { email } });
 
-    if (!user || !password) {
-      const e = new Error('All fields must be filled');
-      e.name = 'ValidationError';
+    if (!user) {
+      const e = new Error('Incorrect email or password'); // retorna mensagem de erro caso o email inserido não esteja no banco de dados
+      e.name = 'UnauthorizedError';
       throw e;
     }
 
     const validPassword = await compare(password, user.password);
     if (!validPassword) {
-      const e = new Error('All fields must be filled');
-      e.name = 'ValidationError';
+      const e = new Error('Incorrect email or password');
+      e.name = 'UnauthorizedError';
       throw e;
     }
 
