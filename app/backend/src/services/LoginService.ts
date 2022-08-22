@@ -22,4 +22,17 @@ export default class LoginService {
     const token = jwtService.createToken({ email, password });
     return token;
   };
+
+  static async validateLogin(token: string) {
+    const { email } = jwtService.validateToken(token); // ajuda da Maiara (monitoria) para acessar o 'role'. Com o retorno do Jwtpayload (arquivo jwtService) foi possível desestruturar o email.
+
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      const e = new Error('unidentified user');
+      e.name = 'UnauthorizedError';
+      throw e;
+    }
+    return user.role;
+  }
 }
