@@ -20,4 +20,14 @@ const incorrectLoginMock = {
 
 }
 
-export { loginMock, userMock, incorrectLoginMock };
+const teamsMock = {
+  id: 1,
+	teamName: 'Avaí/Kindermann'
+}
+
+export { 
+  loginMock, 
+  userMock, 
+  incorrectLoginMock, 
+  teamsMock 
+};
