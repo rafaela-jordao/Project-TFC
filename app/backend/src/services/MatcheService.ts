@@ -14,4 +14,18 @@ export default class MatcheService implements IMaches {
     });
     return list;
   }
+
+  async create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals }: {
+    homeTeam: number, awayTeam: number, homeTeamGoals: number, awayTeamGoals: number }) {
+    const save = {
+      homeTeam,
+      awayTeam,
+      homeTeamGoals,
+      awayTeamGoals,
+      inProgress: true,
+    };
+
+    const create = await this.matcheModel.create(save);
+    return create;
+  }
 }
