@@ -25,9 +25,25 @@ const teamsMock = {
 	teamName: 'Avaí/Kindermann'
 }
 
+const matchesMock = {
+		id: 45,
+		homeTeam: 5,
+		homeTeamGoals: 1,
+		awayTeam: 3,
+		awayTeamGoals: 1,
+		inProgress: true,
+		teamHome: {
+			teamName: 'Cruzeiro'
+		},
+		teamAway: {
+			teamName: 'Botafogo'
+		}
+}
+
 export { 
   loginMock, 
   userMock, 
   incorrectLoginMock, 
-  teamsMock 
+  teamsMock,
+  matchesMock, 
 };
