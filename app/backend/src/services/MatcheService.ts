@@ -37,8 +37,17 @@ export default class MatcheService implements IMaches {
     return create;
   }
 
+  // altera o status inProgress de uma partida para false no banco de dados
   async updateStatus(id: number): Promise<string> {
     await this.matcheModel.update({ inProgress: false }, { where: { id } });
     return 'Fineshed';
+  }
+
+  // altera partidas em andamento
+  async updateMatches(id: number, homeTeamGoals: number, awayTeamGoals: number): Promise<string> {
+    await this.matcheModel.update({ homeTeamGoals, awayTeamGoals }, {
+      where: { id },
+    });
+    return 'successfully updated';
   }
 }
