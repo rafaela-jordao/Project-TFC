@@ -7,7 +7,7 @@ export default class ValidateToken {
     const { authorization } = req.headers;
 
     if (!authorization) {
-      const error = new Error('Token not found');
+      const error = new Error('token not found');
       error.name = 'UnauthorizedError';
       throw error;
     }

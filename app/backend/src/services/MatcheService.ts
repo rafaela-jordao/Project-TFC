@@ -24,8 +24,21 @@ export default class MatcheService implements IMaches {
       awayTeamGoals,
       inProgress: true,
     };
+    // verifica se existe o time na tabela, se ele não existir não será possivel inserir uma partida.
+    const homeTeamId = await Teams.findByPk(homeTeam);
+    const awayTeamId = await Teams.findByPk(awayTeam);
+    if (!homeTeamId || !awayTeamId) {
+      const error = new Error('There is no team with such id!');
+      error.name = 'NotFoundError';
+      throw error;
+    }
 
     const create = await this.matcheModel.create(insertMatches);
     return create;
+  }
+
+  async updateStatus(id: number): Promise<string> {
+    await this.matcheModel.update({ inProgress: false }, { where: { id } });
+    return 'Fineshed';
   }
 }
