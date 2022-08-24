@@ -17,7 +17,7 @@ export default class MatcheService implements IMaches {
 
   async create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals }: {
     homeTeam: number, awayTeam: number, homeTeamGoals: number, awayTeamGoals: number }) {
-    const save = {
+    const insertMatches = {
       homeTeam,
       awayTeam,
       homeTeamGoals,
@@ -25,7 +25,7 @@ export default class MatcheService implements IMaches {
       inProgress: true,
     };
 
-    const create = await this.matcheModel.create(save);
+    const create = await this.matcheModel.create(insertMatches);
     return create;
   }
 }

@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-// import jwtService from '../services/jwtService';
 import ValidateLogin from '../middlewares/ValidateLogin';
 import LoginService from '../services/LoginService';
 
@@ -15,7 +14,6 @@ export default class LoginController {
 
   static async validateLogin(req: Request, res: Response) {
     const { authorization } = req.headers;
-    console.log(authorization);
 
     if (!authorization) {
       const error = new Error('Token not found');

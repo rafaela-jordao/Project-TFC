@@ -16,7 +16,7 @@ export default class JwtService {
       const verify = jwt.verify(token, jwtSecret);
       return verify as JwtPayload;
     } catch (e) {
-      const error = new Error('Expired or invalid token');
+      const error = new Error('Token must be a valid token');
       error.name = 'UnauthorizedError';
       throw error;
     }
